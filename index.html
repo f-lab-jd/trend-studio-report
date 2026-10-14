@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Trend Studio 정리 보고서</title>
+<meta name="description" content="Trend Studio 2026-10-14 현황: 생성 모델 카탈로그 개방, 결제사 상품, Vercel 플랜, 이메일, 남은 일">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --ink: #1d1d1b; --quiet: #5f5e58; --rule: #e6e3da;
+  --edge: #b9b6aa; --accent: #2f6fd6; --accent-tint: rgba(47,111,214,.10);
+  --good: #2e7d4f; --warn: #a86a00; --bad: #b8322a;
+  --good-tint: rgba(46,125,79,.10); --warn-tint: rgba(168,106,0,.12); --bad-tint: rgba(184,50,42,.10);
+  --code: #f1efe8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161614; --surface: #1e1e1b; --ink: #ecebe6; --quiet: #a9a79e; --rule: #33322e;
+    --edge: #6c6a62; --accent: #7aa7f0; --accent-tint: rgba(122,167,240,.14);
+    --good: #6cc193; --warn: #e2a845; --bad: #ee7c72;
+    --good-tint: rgba(108,193,147,.12); --warn-tint: rgba(226,168,69,.14); --bad-tint: rgba(238,124,114,.12);
+    --code: #2a2a26;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161614; --surface: #1e1e1b; --ink: #ecebe6; --quiet: #a9a79e; --rule: #33322e;
+  --edge: #6c6a62; --accent: #7aa7f0; --accent-tint: rgba(122,167,240,.14);
+  --good: #6cc193; --warn: #e2a845; --bad: #ee7c72;
+  --good-tint: rgba(108,193,147,.12); --warn-tint: rgba(226,168,69,.14); --bad-tint: rgba(238,124,114,.12);
+  --code: #2a2a26;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.7 "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  word-break: keep-all; overflow-wrap: anywhere; }
+main { max-width: 760px; margin: 0 auto; padding: 48px 16px 80px; }
+header { border-bottom: 1px solid var(--rule); padding-bottom: 24px; margin-bottom: 8px; }
+.eyebrow { color: var(--quiet); font-size: 13px; letter-spacing: .02em; margin: 0 0 8px; }
+h1 { font-size: 30px; line-height: 1.3; margin: 0 0 12px; letter-spacing: -.01em; }
+.lead { font-size: 17px; margin: 0; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+nav.toc a { display: inline-block; font-size: 13px; color: var(--quiet); text-decoration: none; border: 1px solid var(--rule); border-radius: 999px; padding: 4px 12px; background: var(--surface); }
+nav.toc a:hover { color: var(--ink); border-color: var(--edge); }
+section { padding-top: 32px; }
+h2 { font-size: 21px; line-height: 1.4; margin: 0 0 12px; scroll-margin-top: 16px; }
+p { margin: 0 0 14px; }
+a { color: var(--accent); }
+code { font: 13.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--code); padding: 1px 6px; border-radius: 4px; }
+ul { margin: 0 0 14px; padding-left: 22px; }
+li { margin: 4px 0; }
+.table-wrap { overflow-x: auto; margin: 4px 0 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; line-height: 1.55; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+th { font-size: 12.5px; font-weight: 600; color: var(--quiet); background: transparent; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { white-space: nowrap; font-weight: 500; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.ok { color: var(--good); background: var(--good-tint); }
+.warn { color: var(--warn); background: var(--warn-tint); }
+.bad { color: var(--bad); background: var(--bad-tint); }
+figure { margin: 8px 0 16px; padding: 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+figure svg { display: block; width: 100%; height: auto; }
+figcaption { font-size: 13px; color: var(--quiet); margin-top: 10px; }
+svg .box { fill: none; stroke: var(--edge); stroke-width: 1.25; }
+svg .box.main { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 2; }
+svg .line { fill: none; stroke: var(--edge); stroke-width: 1.25; }
+svg .arrow { fill: var(--edge); }
+svg .name { fill: var(--ink); font-weight: 600; font-size: 14px; }
+svg .body { fill: var(--quiet); font-size: 12px; }
+svg .body.strong { fill: var(--ink); }
+svg .label { fill: var(--quiet); font-size: 12px; }
+svg .title { fill: var(--ink); font-weight: 600; font-size: 15px; }
+.todo { list-style: none; padding: 0; margin: 0 0 14px; }
+.todo li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); margin: 0; }
+.todo li:last-child { border-bottom: 0; }
+.todo .n { flex: none; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--edge); font-size: 12px; font-weight: 600; display: grid; place-items: center; color: var(--quiet); margin-top: 2px; }
+.callout { border-left: 3px solid var(--warn); background: var(--warn-tint); padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 0 0 16px; }
+footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--quiet); font-size: 13px; }
+@media (max-width: 560px) { h1 { font-size: 25px; } main { padding-top: 32px; } td:first-child { white-space: normal; } }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <p class="eyebrow">2026-10-14 기준 · 정리 보고서</p>
+  <h1>Trend Studio 정리 보고서</h1>
+  <p class="lead">생성 모델을 데이터로 추가하는 구조를 <a href="https://trend-studio-five.vercel.app">trend-studio-five.vercel.app</a>에 배포했습니다(커밋 df475e3). 지금 판매 화면과 기존 주문은 그대로입니다. 실제 판매를 막고 있는 것은 키·계정·요금제 세 가지입니다.</p>
+  <nav class="toc" aria-label="목차">
+    <a href="#status">한눈에 보기</a><a href="#engines">생성 모델 열어두기</a><a href="#product">결제사 상품</a><a href="#vercel">Vercel 무료 플랜</a><a href="#email">이메일</a><a href="#todo">해주셔야 할 일</a>
+  </nav>
+</header>
+
+<section id="status">
+  <h2>한눈에 보기</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>항목</th><th>상태</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td>웹사이트</td><td><span class="pill ok">정상</span></td><td>홈·만들기·랜딩·약관·헬스체크 200</td></tr>
+      <tr><td>영상 처리</td><td><span class="pill ok">정상</span></td><td>ffmpeg·AI 라벨·장면 이어 붙이기, 서버 자체 점검 통과</td></tr>
+      <tr><td>생성 모델 카탈로그</td><td><span class="pill ok">정상</span></td><td>PixVerse v5.5·v6, Kling v3 등록, 템플릿 14개 버전 검증 통과</td></tr>
+      <tr><td>테스트</td><td><span class="pill ok">통과</span></td><td>666개, 타입 검사·린트·빌드 통과</td></tr>
+      <tr><td>생성(fal)</td><td><span class="pill bad">막힘</span></td><td>FAL_KEY 없음</td></tr>
+      <tr><td>결제</td><td><span class="pill bad">막힘</span></td><td>Dodo·Polar 로그인 안 됨, 상품·키 없음</td></tr>
+      <tr><td>메일 발송·알림</td><td><span class="pill bad">막힘</span></td><td>RESEND_API_KEY·EMAIL_FROM·ALERT_EMAIL 없음</td></tr>
+      <tr><td>호스팅 요금제</td><td><span class="pill warn">주의</span></td><td>Vercel 무료 플랜은 상업적 이용 금지</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="engines">
+  <h2>생성 모델 열어두기</h2>
+  <p>생성 모델을 코드에 고정하지 않고 데이터 파일로 바꿨습니다. 밈에 쓰인 새 모델은 <code>data/engines/&lt;id&gt;.json</code> 파일 하나로 추가됩니다. 구매자 화면에는 모델 선택이 없고, 템플릿이 어떤 모델로 만들지를 정합니다.</p>
+  <figure>
+    <svg viewBox="0 0 760 426" role="img" aria-label="밈마다 모델이 달라도 엔진 파일 하나로 추가된다">
+      <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+      <text class="title" x="24" y="34">밈마다 모델이 달라도 엔진 파일 하나로 추가된다</text>
+      <g class="line">
+        <path d="M236 110H276" marker-end="url(#arr)"/><path d="M484 110H524" marker-end="url(#arr)"/>
+        <path d="M628 142V218" marker-end="url(#arr)"/><path d="M524 250H484" marker-end="url(#arr)"/>
+        <path d="M276 250H236" marker-end="url(#arr)"/><path d="M628 338V282" marker-end="url(#arr)"/>
+      </g>
+      <rect class="box" x="28" y="78" width="208" height="64" rx="8"/><text class="name" x="132" y="104" text-anchor="middle">밈 발견</text><text class="body" x="132" y="126" text-anchor="middle">만든 모델까지 확인</text>
+      <rect class="box" x="276" y="78" width="208" height="64" rx="8"/><text class="name" x="380" y="104" text-anchor="middle">트렌드 스펙</text><text class="body" x="380" y="126" text-anchor="middle">target.engine (선택)</text>
+      <rect class="box main" x="524" y="78" width="208" height="64" rx="8"/><text class="name" x="628" y="104" text-anchor="middle">엔진 카탈로그</text><text class="body strong" x="628" y="126" text-anchor="middle">data/engines/&lt;id&gt;.json</text>
+      <text class="label" x="640" y="170">엔진 ID로 참조</text>
+      <rect class="box" x="524" y="218" width="208" height="64" rx="8"/><text class="name" x="628" y="244" text-anchor="middle">템플릿 버전</text><text class="body" x="628" y="266" text-anchor="middle">engine + engineParams</text>
+      <rect class="box" x="276" y="218" width="208" height="64" rx="8"/><text class="name" x="380" y="244" text-anchor="middle">장면별 요청 본문</text><text class="body" x="380" y="266" text-anchor="middle">자리표시자를 채워 만듦</text>
+      <rect class="box" x="28" y="218" width="208" height="64" rx="8"/><text class="name" x="132" y="244" text-anchor="middle">fal 영상 생성</text><text class="body" x="132" y="266" text-anchor="middle">최대 4장면 이어 붙임</text>
+      <text class="label" x="640" y="314">주문</text>
+      <rect class="box" x="524" y="338" width="208" height="64" rx="8"/><text class="name" x="628" y="364" text-anchor="middle">구매자</text><text class="body" x="628" y="386" text-anchor="middle">템플릿만 고름 · 모델은 안 봄</text>
+    </svg>
+    <figcaption>밈 → 엔진 파일 → 템플릿 → fal. 구매자는 템플릿만 고릅니다.</figcaption>
+  </figure>
+  <p>스카우트가 밈을 만든 모델을 트렌드 스펙의 <code>target.engine</code>에 적으면 공장은 그 모델로 초안을 만듭니다. 카탈로그에 없는 모델이면 <code>engine_unknown</code>, 해당 트렌드를 만들 수 없는 모델이면 <code>engine_unfit</code>으로 돌려보냅니다.</p>
+  <p>엔진 파일 하나에 담기는 것:</p>
+  <ul>
+    <li>fal 엔드포인트와 요청 본문 틀. <code>$prompt</code>·<code>$image</code> 같은 자리표시자를 장면마다 채웁니다.</li>
+    <li>초당 또는 클립당 가격. 원가 35% 상한과 하루 지출 한도에 그대로 쓰입니다.</li>
+    <li>장면 길이 범위(6초·10초처럼 정해진 값도 가능)와 최대 장면 수.</li>
+    <li>얼굴 고정 방식(Kling의 <code>@Element1</code>)과 결과에서 영상 주소를 읽는 위치.</li>
+    <li>밈별로 바꿀 수 있는 설정(스타일·효과). 가격과 해상도는 바꿀 수 없습니다.</li>
+  </ul>
+  <p>파일에 오타가 있거나 9:16 비율이 빠지면 테스트가 실패해서 배포되지 않습니다. 새 모델로 만든 템플릿은 실제 테스트 주문을 통과해야 판매됩니다. 지금 등록된 모델은 PixVerse v5.5(기존 5초)·v6, Kling v3 Standard입니다.</p>
+</section>
+
+<section id="product">
+  <h2>결제사 상품 추가 결과</h2>
+  <p>상품은 아직 만들지 못했습니다. Dodo와 Polar 모두 로그인 화면이 떠 있었고, 계정 가입과 로그인은 본인이 직접 해야 하는 단계입니다. 로그인만 되면 상품 생성과 Vercel 연결은 화면을 조작해서 끝까지 진행합니다.</p>
+  <p>첫 상품은 지금 판매 중인 템플릿 4개가 쓰는 단품입니다. 이 하나만 있어도 테스트 모드에서 결제부터 영상 전달까지 전 과정을 돌려 볼 수 있습니다.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>항목</th><th>값</th></tr></thead>
+    <tbody>
+      <tr><td>상품명</td><td>AI trend video (single)</td></tr>
+      <tr><td>가격</td><td>US$3.99, 일회성 결제</td></tr>
+      <tr><td>세금 분류</td><td>디지털 상품(다운로드형 디지털 콘텐츠)</td></tr>
+      <tr><td>설명</td><td>One AI-generated short video from a trend template. Delivered by link.</td></tr>
+      <tr><td>모드</td><td>테스트 모드 먼저</td></tr>
+      <tr><td>연결</td><td>상품 ID를 <code>DODO_PRODUCTS</code>의 <code>single</code>에 넣고 재배포</td></tr>
+    </tbody>
+  </table></div>
+  <p>다음 순서는 3개 묶음 US$6.99(pack), 그다음 초안 템플릿이 쓰는 p299·p799입니다. 상품 ID는 비밀 값이 아니라서 Vercel에 직접 넣고, API 키는 본인이 넣습니다.</p>
+</section>
+
+<section id="vercel">
+  <h2>Vercel 무료 플랜 대응</h2>
+  <p>무료(Hobby) 플랜에 맞춰 10분 간격 크론은 등록하지 않았습니다. 장면은 fal 완료 알림으로 바로 이어집니다. 알림이 빠지면 주문 페이지를 열 때와 하루 1회 크론(03:00 UTC)이 멈춘 작업을 다시 진행합니다. 테스트와 출시 전 점검에는 충분합니다.</p>
+  <div class="callout">
+    <p>첫 실결제 전에는 Pro($20/월)로 올려야 합니다. Vercel 정책상 Hobby는 비상업적 개인 용도로만 쓸 수 있고, 방문자에게 결제를 받는 사이트는 상업적 이용입니다(<a href="https://vercel.com/docs/limits/fair-use-guidelines">공정 사용 가이드</a>).</p>
+    <p style="margin:0">Hobby의 Active CPU는 월 4시간입니다. 영상 1초 처리에 약 1초가 걸리므로 30초 영상 기준 한 달 수백 건이 상한입니다.</p>
+  </div>
+  <p>Pro로 올리면 10분 크론을 켜서 장애 복구 시간도 하루에서 10분으로 줄입니다.</p>
+</section>
+
+<section id="email">
+  <h2>이메일 확인 결과</h2>
+  <p>10/14에 다시 확인했지만 새 답장은 없습니다. 답장은 10/13 것 두 통뿐이고, 실제 안내가 담긴 것은 Dodo 한 통입니다.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>보낸 곳</th><th>답장 시각</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>Dodo Compliance</td><td>10/13 15:02</td><td>AI 콘텐츠 생성은 심사가 필요한 분류. Individual로 신청. 공개 사이트에 가격·약관·개인정보·환불·지원 페이지를 갖추고 Product Information Form 제출. 최소 정산 $100(요청 시 $50), USD SWIFT 정산마다 $25, $1,000 미만이면 $5 추가.</td></tr>
+      <tr><td>Polar Support</td><td>10/13 15:00</td><td>자동 접수 안내만 옴. 담당자 답장 대기 중.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Dodo 답장은 2분 만에 왔고 일반 안내 형식이라 자동 응답으로 보입니다. 요구 페이지는 사이트에 이미 모두 있습니다. Form 제출 전에 자체 도메인을 연결하면 심사에서 더 유리합니다.</p>
+</section>
+
+<section id="todo">
+  <h2>해주셔야 할 일</h2>
+  <p>제가 대신할 수 없는 것은 계정 가입·로그인과 비밀 키 입력뿐입니다. 나머지는 로그인된 화면이 있으면 제가 진행합니다.</p>
+  <ol class="todo">
+    <li><span class="n">1</span><span>이 Chrome에서 Dodo(app.dodopayments.com)에 가입·로그인하고 테스트 모드로 전환. 그다음에는 제가 단품 상품을 만들고 Vercel에 연결합니다.</span></li>
+    <li><span class="n">2</span><span>Dodo 테스트 API 키·웹훅 시크릿과 <code>PAYMENT_PROVIDER=dodo</code>를 Vercel 환경변수에 입력</span></li>
+    <li><span class="n">3</span><span>fal.ai에 가입·로그인하고 <code>FAL_KEY</code>와 <code>FAL_DAILY_CAP_USD</code>(예: 20)를 Vercel에 입력. 그다음에는 제가 엔진별 실제 생성 테스트를 돌리고 초안 3개를 판매로 올립니다.</span></li>
+    <li><span class="n">4</span><span><code>ANTHROPIC_API_KEY</code>를 Production에 입력(텍스트 템플릿 검수용)</span></li>
+    <li><span class="n">5</span><span>Resend에 가입하고 <code>RESEND_API_KEY</code>·<code>EMAIL_FROM</code>·<code>ALERT_EMAIL</code> 입력</span></li>
+    <li><span class="n">6</span><span>자체 도메인 구매. 연결과 Dodo Product Information Form 초안은 제가 준비합니다.</span></li>
+    <li><span class="n">7</span><span>첫 실결제 전에 Vercel Pro로 전환</span></li>
+    <li><span class="n">8</span><span>메일 초안 3개 발송 여부 결정</span></li>
+  </ol>
+</section>
+
+<footer>Trend Studio · 2026-10-14 기준 내부 현황 보고서</footer>
+</main>
+</body>
+</html>
